@@ -9,6 +9,10 @@ import atores
 from fase import Fase, EM_ANDAMENTO, VITORIA
 from atores import PassaroVermelho, PassaroAmarelo, Porco, Obstaculo
 
+import os
+import sys
+import pyautogui
+
 ALTURA_DA_TELA = 600  # px
 
 root = Tk()
@@ -103,15 +107,27 @@ def animar(tela, camada_de_atores, fase, passo=0.01, delta_t=0.04):
             delta_t *= -multiplicador_rebobinar
             _animar()
 
+    def restart():
+        root.destroy()
+        os.startfile("placa_grafica_tkinter.py")
 
+        
     def _jogar_novamente(event):
-        return
-        nonlocal tempo
-        nonlocal delta_t
-        if fase.acabou(tempo):
-            tempo = delta_t
-            fase.resetar()
-            _animar()
+        # return
+        # nonlocal tempo
+        # nonlocal delta_t
+        # if fase.acabou(tempo):
+        #     tempo = delta_t
+        #     fase.resetar()
+        #     _animar()
+        #     root.mainloop()
+        # root.destroy()
+        restart()
+        pyautogui.hotkey("Ctrl", "F5")
+
+
+
+
 
     def _finalizar(event):
         root.destroy()
